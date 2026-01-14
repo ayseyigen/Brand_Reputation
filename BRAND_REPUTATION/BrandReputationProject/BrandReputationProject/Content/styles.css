@@ -1,0 +1,744 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --purple: rgb(123, 31, 162);
+    --violet: rgb(103, 58, 183);
+    --pink: rgb(244, 143, 177);
+    --items: 10;
+    --width: clamp(150px, 30vw, 300px);
+    --height: clamp(200px, 40vw, 400px);
+    --x: calc(var(--active) * 800%);
+    --y: calc(var(--active) * 200%);
+    --rot: calc(var(--active) * 120deg);
+    --opacity: calc(var(--zIndex) / var(--items) * 3 - 2);
+}
+
+body {
+    background-color: #1D1D1F;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+@keyframes morphing {
+    0% {
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%
+    }
+
+    4% {
+        border-radius: 50% 50% 50% 38% / 43% 55% 50% 50%
+    }
+
+    8% {
+        border-radius: 77% 50% 50% 38% / 33% 70% 50% 50%
+    }
+
+    12% {
+        border-radius: 77% 50% 63% 17% / 18% 91% 50% 50%
+    }
+
+    16% {
+        border-radius: 100% 27% 63% 57% / 0% 91% 41% 50%
+    }
+
+    20% {
+        border-radius: 100% 27% 63% 57% / 48% 44% 41% 26%
+    }
+
+    24% {
+        border-radius: 100% 0% 88% 57% / 50% 44% 10% 26%
+    }
+
+    28% {
+        border-radius: 30% 61% 88% 0% / 50% 72% 55% 80%
+    }
+
+    32% {
+        border-radius: 30% 61% 88% 48% / 50% 72% 55% 80%
+    }
+
+    36% {
+        border-radius: 79% 36% 88% 99% / 34% 59% 61% 59%
+    }
+
+    40% {
+        border-radius: 79% 36% 56% 100% / 34% 57% 76% 59%
+    }
+
+    44% {
+        border-radius: 98% 53% 55% 39% / 58% 72% 85% 100%
+    }
+
+    48% {
+        border-radius: 94% 84% 89% 35% / 92% 83% 97% 100%
+    }
+
+    52% {
+        border-radius: 61% 53% 54% 99% / 97% 83% 54% 60%
+    }
+
+    56% {
+        border-radius: 61% 53% 54% 22% / 97% 12% 34% 60%
+    }
+
+    60% {
+        border-radius: 22% 81% 54% 66% / 56% 52% 6% 60%
+    }
+
+    64% {
+        border-radius: 44% 81% 54% 66% / 37% 52% 29% 32%
+    }
+
+    68% {
+        border-radius: 80% 81% 54% 66% / 61% 37% 29% 32%
+    }
+
+    72% {
+        border-radius: 100% 81% 100% 74% / 73% 37% 96% 80%
+    }
+
+    76% {
+        border-radius: 100% 85% 100% 32% / 43% 68% 96% 80%
+    }
+
+    80% {
+        border-radius: 12% 12% 100% 32% / 100% 100% 86% 100%
+    }
+
+    84% {
+        border-radius: 0% 0% 100% 32% / 100% 100% 51% 100%
+    }
+
+    88% {
+        border-radius: 0% 0% 100% 0% / 100% 100% 0% 100%
+    }
+
+    92% {
+        border-radius: 45% 38% 72% 42% / 77% 50% 32% 62%
+    }
+
+    96% {
+        border-radius: 45% 38% 50% 50% / 65% 50% 50% 62%
+    }
+
+    100% {
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%
+    }
+}
+
+#blob {
+    background-color: white;
+    height: 35vmax;
+    aspect-ratio: 1;
+    z-index: 0;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: linear-gradient(to right, #F5FCCD,#78D6C6,#419197, #12486B);
+    animation: morphing 50s infinite;
+    opacity: 0.8;
+}
+
+#blur {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 0;
+    backdrop-filter: blur(8vmax);
+}
+
+#page1 {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#page2 {
+    padding-bottom: 10rem;
+    z-index: 2;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#page3 {
+    z-index: 2;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+#page1 h1 {
+    padding-top: 4rem;
+    margin-top: 12rem;
+    font-size: 10rem;
+    color: white;
+    animation: effect1 1.5s ease;
+}
+
+#page1 .searchBar {
+    padding-top: 2rem;
+    animation: effect2 1.5s ease;
+}
+
+    #page1 .searchBar input {
+        height: 6rem;
+        width: 55rem;
+        padding: 1rem;
+        font-size: 2rem;
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 0.4rem;
+        color: white;
+    }
+
+        #page1 .searchBar input::placeholder {
+            color: white;
+        }
+
+@keyframes effect1 {
+    from {
+        transform: translateX(-200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes effect2 {
+    from {
+        transform: translateX(200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes effect3 {
+    from {
+        transform: translateY(200%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.scroll-downs {
+    animation: effect3 1.5s ease;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    width: 34px;
+    height: 55px;
+}
+
+.mousey {
+    width: 3px;
+    padding: 10px 15px;
+    height: 35px;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    opacity: 0.75;
+    box-sizing: content-box;
+}
+
+.scroller {
+    width: 3px;
+    height: 10px;
+    border-radius: 25%;
+    background-color: #fff;
+    animation-name: scroll;
+    animation-duration: 2.2s;
+    animation-timing-function: cubic-bezier(.15,.41,.69,.94);
+    animation-iteration-count: infinite;
+}
+
+@keyframes scroll {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(15px);
+        opacity: 0;
+    }
+}
+
+#page2 .midT {
+    object-position: bottom;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+
+    #page2 .midT .text-colored {
+        color: white;
+        font-size: 4.2rem; /* Increased font size */
+        max-width: 700px; /* Set maximum width */
+        margin: 0 auto; /* Center align the text */
+        text-align: center;
+        text-transform: none;
+    }
+
+    #page2 .midT .top-line {
+        margin-bottom: 1rem; /* Add some space below the top line */
+    }
+
+#page2 .text-purple-dark, .text-turquoise-light, .text-yellow-light {
+    margin: 0 5px; /* Add margin to create space */
+    display: inline; /* Ensure the spans are inline */
+}
+
+#page2 .midT .text-colored .text-purple-dark {
+    font-size: 4.2rem; /* Increased font size */
+    color: #a374ff;
+}
+
+#page2 .midT .text-colored .text-turquoise-light {
+    font-size: 4.7rem; /* Increased font size */
+    color: #17f1d1;
+}
+
+#page2 .midT .text-colored .text-yellow-light {
+    font-size: 4.7rem; /* Increased font size */
+    color: #ffd074;
+}
+
+#page2 .midT .text-colored span {
+    font-size: 4.2rem; /* Increased font size */
+    color: white;
+    display: inline;
+}
+
+#page2 .midT .text-colored .red {
+    color: #A91D3A;
+}
+
+#page4 {
+    z-index: 2;
+    position: relative;
+    width: 100%;
+}
+
+    #page4 .row {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: transparent;
+        gap: 1rem;
+    }
+
+        #page4 .row .map {
+            flex: 1 1 45rem;
+            width: 100%;
+            object-fit: cover;
+            height: 50vh;
+        }
+
+        #page4 .row form {
+            height: 50vh;
+            flex: 1 1 45rem;
+            padding: 5rem 2rem;
+            width: 100%;
+            object-fit: cover;
+            text-align: center;
+        }
+
+            #page4 .row form .inputbox {
+                display: flex;
+                align-items: center;
+                margin: 2rem 0;
+                border: white;
+            }
+
+                #page4 .row form .inputbox i {
+                    color: white;
+                    font-size: 2.5rem;
+                    padding-right: 1rem;
+                }
+
+                #page4 .row form .inputbox input {
+                    width: 100%;
+                    padding: 2rem;
+                    font-size: 2rem;
+                    text-transform: none;
+                    background-color: none;
+                }
+
+            #page4 .row form .cbutton {
+                background-color: #6A5ACD; /* A professional violet that matches the hero elements */
+                color: white;
+                border: none;
+                padding: 1rem 2rem;
+                font-size: 1.6rem;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                border-radius: 0.5rem;
+            }
+
+                #page4 .row form .cbutton:hover, #page4 .row form .cbutton:focus {
+                    background-color: #483D8B; /* A darker shade for hover state */
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                }
+
+                #page4 .row form .cbutton:active {
+                    transform: translateY(1px);
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                }
+
+            #page4 .row form h3 {
+                padding-bottom: 1rem;
+                font-size: 4rem;
+                font-weight: 300;
+                color: white;
+            }
+
+                #page4 .row form h3 > .magic {
+                    display: inline-block;
+                    position: relative;
+                }
+
+                    #page4 .row form h3 > .magic > .magic-star {
+                        --size: clamp(20px, 1.5vw, 30px);
+                        animation: scale 700ms ease forwards;
+                        display: block;
+                        height: var(--size);
+                        left: var(--star-left);
+                        position: absolute;
+                        top: var(--star-top);
+                        width: var(--size);
+                    }
+
+                        #page4 .row form h3 > .magic > .magic-star > svg {
+                            animation: rotate 1000ms linear infinite;
+                            display: block;
+                            opacity: 0.7;
+                        }
+
+                            #page4 .row form h3 > .magic > .magic-star > svg > path {
+                                fill: var(--violet);
+                            }
+
+                    #page4 .row form h3 > .magic > .magic-text {
+                        animation: background-pan 3s linear infinite;
+                        background: linear-gradient( to right, var(--purple), var(--violet), var(--pink), var(--purple) );
+                        background-size: 200%;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        white-space: nowrap;
+                    }
+
+@keyframes background-pan {
+    from {
+        background-position: 0% center;
+    }
+
+    to {
+        background-position: -200% center;
+    }
+}
+
+@keyframes scale {
+    from, to {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#page5 {
+    z-index: 2;
+    position: relative;
+    background-color: transparent;
+}
+
+    #page5 .footer {
+        color: white;
+        padding-top: 1rem;
+        background-color: transparent;
+        text-align: center;
+    }
+
+.line {
+    width: 100%;
+    height: 1px; /* Adjust the height of the line */
+    background-color: rgb(255, 255, 255); /* Adjust the color of the line */
+}
+
+#page5 .footer .share a {
+    line-height: 4rem;
+    color: white;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+#page5 .footer .share #facebook:hover {
+    color: #5369b7;
+}
+
+#page5 .footer .share #twitter:hover {
+    color: rgba(255, 255, 255, 0.77);
+}
+
+#page5 .footer .share #instagram:hover {
+    color: rgb(153, 98, 153);
+}
+
+#page5 .footer .share #linkedin:hover {
+    color: #869cea;
+}
+
+#page5 .footer .share #pinterest:hover {
+    color: rgb(227, 67, 67);
+}
+
+#page5 .footer .credit {
+    color: rgba(255, 255, 255, 0.668);
+    padding-top: 1rem;
+}
+
+    #page5 .footer .credit span {
+        color: #4f6ede;
+    }
+
+/*Responsiveness*/
+@media (max-width: 1518px) {
+    .midT .text-colored {
+        font-size: 4.4rem;
+    }
+
+    #page1 h1 {
+        font-size: 8rem;
+    }
+
+    .midT .text-colored .text-purple-dark {
+        font-size: 4.4rem;
+    }
+
+    .midT .text-colored .text-turquoise-light {
+        font-size: 4.7rem;
+    }
+
+    .midT .text-colored .text-yellow-light {
+        font-size: 4.7rem;
+    }
+
+    .midT .text-colored p {
+        font-size: 4.4rem;
+    }
+}
+
+@media (max-width: 1241px) {
+    #page1 h1 {
+        font-size: 6rem;
+    }
+
+    #page1 .searchBar input {
+        height: 5.5rem;
+        width: 50rem;
+        padding: 1rem;
+        font-size: 1.9rem;
+    }
+}
+
+@media (max-width: 931px) {
+    #page1 h1 {
+        font-size: 4rem;
+    }
+
+    #page1 .searchBar input {
+        height: 4rem;
+        width: 45rem;
+        padding: 1rem;
+        font-size: 1.7rem;
+    }
+
+    #main .scroll-downs {
+        width: 27px;
+        height: 43px;
+    }
+
+    #main .mousey {
+        width: 2.2px;
+        padding: 10px 15px;
+        height: 30px;
+    }
+
+    #main .scroller {
+        width: 2.8px;
+        height: 8px;
+    }
+
+    @keyframes scroll {
+        0% {
+            opacity: 0;
+        }
+
+        10% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(13px);
+            opacity: 0;
+        }
+    }
+
+    #page2 .midT .text-colored {
+        font-size: 3.8rem; /* Increased font size */
+        max-width: 600px; /* Set maximum width */
+    }
+
+        #page2 .midT .text-colored .text-purple-dark {
+            font-size: 3.8rem; /* Increased font size */
+        }
+
+        #page2 .midT .text-colored .text-turquoise-light {
+            font-size: 4.1rem; /* Increased font size */
+        }
+
+        #page2 .midT .text-colored .text-yellow-light {
+            font-size: 4.1rem; /* Increased font size */
+        }
+
+        #page2 .midT .text-colored span {
+            font-size: 3.8rem; /* Increased font size */
+        }
+}
+
+@media (max-width: 910px) {
+    #page4 .row form .inputbox input {
+        padding: 1.5rem;
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 666px) {
+    #page1 h1 {
+        font-size: 3rem;
+    }
+
+    #page1 .searchBar input {
+        height: 3.5rem;
+        width: 33rem;
+        padding: 1rem;
+        font-size: 1.5rem;
+    }
+
+    #main .mousey {
+        width: 1.6px;
+        padding: 10px 15px;
+        height: 28px;
+    }
+
+    #main .scroller {
+        width: 2.5px;
+        height: 8px;
+        border-radius: 30%;
+    }
+
+    #page2 .midT .text-colored {
+        font-size: 3.1rem; /* Increased font size */
+        max-width: 550px; /* Set maximum width */
+    }
+
+        #page2 .midT .text-colored .text-purple-dark {
+            font-size: 3.1rem; /* Increased font size */
+        }
+
+        #page2 .midT .text-colored .text-turquoise-light {
+            font-size: 3.5rem; /* Increased font size */
+        }
+
+        #page2 .midT .text-colored .text-yellow-light {
+            font-size: 3.5rem; /* Increased font size */
+        }
+
+        #page2 .midT .text-colored span {
+            font-size: 3.1rem; /* Increased font size */
+        }
+}
+
+@media (max-width: 600px) {
+    #main .scroll-downs {
+        min-height: 0vh;
+        display: none;
+    }
+
+    #page1 {
+        height: 20vh;
+    }
+
+    #page2 .midT .text-colored {
+        font-size: 2.5rem; /* Increased font size */
+        max-width: 400px; /* Set maximum width */
+    }
+
+        #page2 .midT .text-colored .text-purple-dark {
+            font-size: 2.5rem; /* Increased font size */
+        }
+
+        #page2 .midT .text-colored .text-turquoise-light {
+            font-size: 3rem; /* Increased font size */
+        }
+
+        #page2 .midT .text-colored .text-yellow-light {
+            font-size: 3rem; /* Increased font size */
+        }
+
+        #page2 .midT .text-colored span {
+            font-size: 2.5rem; /* Increased font size */
+        }
+}

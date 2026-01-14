@@ -1,0 +1,101 @@
+﻿@model List<BrandReputationProject.Models.amazonsingledata>
+<link rel="stylesheet" href="~/Content/styles.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css" />
+<div id="blob"></div>
+<div id="blur"></div>
+<div id="main" data-scroll-container>
+    <div id="page1" data-scroll>
+        <h1 id="headerText" data-value="BRAND PRODUCT REPUTATION" class="not-selectable">BRAND PRODUCT REPUTATION</h1>
+        <div id="searchArea" class="searchBar">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get, new { id = "searchForm" }))
+            {
+                <input id="searchInput" type="text" name="term" placeholder="Search Brand" />
+            }
+        </div>
+
+        <script>
+            document.getElementById("searchInput").addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    document.getElementById("searchForm").submit();
+                }
+            });
+
+            // Show alert if search term not found
+            var message = "@ViewBag.Message";
+            if (message !== "") {
+                alert(message);
+            }
+        </script>
+        <div class="scroll-downs">
+            <div class="mousey">
+                <div class="scroller"></div>
+            </div>
+        </div>
+    </div>
+    <div id="page2" data-scroll>
+        <div class="midT">
+            <div class="text-colored not-selectable top-line">
+                <span>WHO ARE </span><span class="red">WE?</span>
+            </div>
+            <div class="text-colored not-selectable">
+                <span> We are a group of computer engineering students who want </span><span class="text-purple-dark">reviews</span><span> of brands and products to reach the user. Our aim is to provide </span><span class="text-turquoise-light">detailed analysis</span><span> and </span><span> of the brands and products from which users receive service in the most </span><span class="text-yellow-light">accurate</span><span> way.</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="page4" data-scroll>
+        <div class="row">
+            <iframe class="map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48126.00543012342!2d29.02233205!3d41.0717175!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab63f6f8193f1%3A0x36c864a929a1018c!2zQmXFn2lrdGHFny_EsHN0YW5idWw!5e0!3m2!1str!2str!4v1699780610916!5m2!1str!2str"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <form id="form" action="http://localhost:3000/send-email" method="post">
+                <h3>
+                    <span class="magic">
+                        <span class="magic-star">
+                            <svg viewBox="0 0 512 512">
+                                <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+                            </svg>
+                        </span>
+                        <span class="magic-star">
+                            <svg viewBox="0 0 512 512">
+                                <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+                            </svg>
+                        </span>
+                        <span class="magic-star">
+                            <svg viewBox="0 0 512 512">
+                                <path d="M512 255.1c0 11.34-7.406 20.86-18.44 23.64l-171.3 42.78l-42.78 171.1C276.7 504.6 267.2 512 255.9 512s-20.84-7.406-23.62-18.44l-42.66-171.2L18.47 279.6C7.406 276.8 0 267.3 0 255.1c0-11.34 7.406-20.83 18.44-23.61l171.2-42.78l42.78-171.1C235.2 7.406 244.7 0 256 0s20.84 7.406 23.62 18.44l42.78 171.2l171.2 42.78C504.6 235.2 512 244.6 512 255.1z" />
+                            </svg>
+                        </span>
+                        <span class="magic-text">Contact Us</span>
+                    </span>
+                    anytime you need!
+                </h3>
+                <div class="inputbox">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input class="not-selectable" type="email" id="email" placeholder="E-Mail" required oninvalid="this.setCustomValidity('Please enter a valid email address in the format: someone@example.com')" oninput="this.setCustomValidity('')" />
+                </div>
+                <button class="cbutton not-selectable" type="submit" onclick="cont()">Contact Now</button>
+            </form>
+        </div>
+    </div>
+    <div class="line"></div>
+    <div id="page5">
+        <section class="footer">
+            <div class="share">
+                <a href="#" class="fab fa-facebook" id="facebook"></a>
+                <a href="#" class="fab fa-x-twitter" id="twitter"></a>
+                <a href="#" class="fab fa-instagram" id="instagram"></a>
+                <a href="#" class="fab fa-linkedin" id="linkedin"></a>
+                <a href="#" class="fab fa-pinterest" id="pinterest"></a>
+            </div>
+            <div class="credit">
+                Created by <span>Ata Kürklü </span>| All Rights Reserved
+            </div>
+        </section>
+    </div>
+</div>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+<script src="https://kit.fontawesome.com/53102fdc3d.js" crossorigin="anonymous"></script>

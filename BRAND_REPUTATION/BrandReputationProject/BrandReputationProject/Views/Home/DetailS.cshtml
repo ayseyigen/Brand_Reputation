@@ -1,0 +1,1382 @@
+﻿@model BrandReputationProject.Models.CombinedDataViewModel
+
+<link rel="stylesheet" href="~/Content/detail.css" />
+<script type="text/javascript"
+        src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["line"] });
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.load(
+        "current",
+        { packages: ["geochart"] },
+        { mapsApiKey: "AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY" }
+    );
+
+
+    google.charts.load("current", { packages: ["table"] });
+    google.charts.setOnLoadCallback(NLP_A);
+    google.charts.setOnLoadCallback(NLP_S);
+    google.charts.setOnLoadCallback(NLP_T);
+    google.charts.setOnLoadCallback(NLP_I);
+    google.charts.setOnLoadCallback(drawChartB);
+    google.charts.setOnLoadCallback(drawChartC);
+    google.charts.setOnLoadCallback(drawChartD);
+    google.charts.setOnLoadCallback(drawChartE);
+    google.charts.setOnLoadCallback(drawChartF);
+    google.charts.setOnLoadCallback(drawStuff2);
+    google.charts.setOnLoadCallback(Amazongram1);
+    google.charts.setOnLoadCallback(Amazongram2);
+    google.charts.setOnLoadCallback(Amazongram3);
+
+    google.charts.setOnLoadCallback(Sikayetgram1);
+    google.charts.setOnLoadCallback(Sikayetgram2);
+    google.charts.setOnLoadCallback(Sikayetgram3);
+
+    google.charts.setOnLoadCallback(Twittergram1);
+    google.charts.setOnLoadCallback(Twittergram2);
+    google.charts.setOnLoadCallback(Twittergram3);
+
+    google.charts.setOnLoadCallback(Instagram1);
+    google.charts.setOnLoadCallback(Instagram2);
+    google.charts.setOnLoadCallback(Instagram3);
+
+    function Amazongram1() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.UnigramFrequencies.Where(h => h.Platform == "Amazon").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.UnigramFrequencies
+                           .Where(p => p.BrandName == brandName && p.Platform == "Amazon") // Filtering by brand name and platform name
+                           .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Unigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#1b9e77']
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('Amazongram1'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+};
+
+    function Amazongram2() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.BigramFrequencies.Where(h => h.Platform == "Amazon").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.BigramFrequencies
+                            .Where(p => p.BrandName == brandName && p.Platform == "Amazon") // Filtering by brand name and platform name
+                            .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Bigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#1b9e77']
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('Amazongram2'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+};
+
+    function Amazongram3() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.TrigramFrequencies.Where(h => h.Platform == "Amazon").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.TrigramFrequencies
+                            .Where(p => p.BrandName == brandName && p.Platform == "Amazon") // Filtering by brand name and platform name
+                            .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Trigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#1b9e77']
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('Amazongram3'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+
+
+    function Sikayetgram1() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.UnigramFrequencies.Where(h => h.Platform == "Şikayet Var").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.UnigramFrequencies
+                           .Where(p => p.BrandName == brandName && p.Platform == "Şikayet Var") // Filtering by brand name and platform name
+                           .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Unigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#695de9']
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('Sikayetgram1'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+};
+
+    function Sikayetgram2() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.BigramFrequencies.Where(h => h.Platform == "Şikayet Var").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.BigramFrequencies
+                            .Where(p => p.BrandName == brandName && p.Platform == "Şikayet Var") // Filtering by brand name and platform name
+                            .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Bigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#695de9']
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('Sikayetgram2'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+};
+
+    function Sikayetgram3() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.TrigramFrequencies.Where(h => h.Platform == "Şikayet Var").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.TrigramFrequencies
+                            .Where(p => p.BrandName == brandName && p.Platform == "Şikayet Var") // Filtering by brand name and platform name
+                            .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Trigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#695de9']
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('Sikayetgram3'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+
+
+    function Twittergram1() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.UnigramFrequencies.Where(h => h.Platform == "Twitter").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.UnigramFrequencies
+                           .Where(p => p.BrandName == brandName && p.Platform == "Twitter") // Filtering by brand name and platform name
+                           .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Unigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#1a8cd8']
+    };
+
+        var chart = new google.charts.Bar(document.getElementById('Twittergram1'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+};
+
+    function Twittergram2() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.BigramFrequencies.Where(h => h.Platform == "Twitter").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.BigramFrequencies
+                            .Where(p => p.BrandName == brandName && p.Platform == "Twitter") // Filtering by brand name and platform name
+                            .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Bigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#1a8cd8']
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('Twittergram2'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+};
+
+    function Twittergram3() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.TrigramFrequencies.Where(h => h.Platform == "Twitter").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.TrigramFrequencies
+                            .Where(p => p.BrandName == brandName && p.Platform == "Twitter") // Filtering by brand name and platform name
+                            .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Trigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#1a8cd8']
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('Twittergram3'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+
+
+    function Instagram1() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.UnigramFrequencies.Where(h => h.Platform == "Instagram").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.UnigramFrequencies
+                           .Where(p => p.BrandName == brandName && p.Platform == "Instagram") // Filtering by brand name and platform name
+                           .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Unigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#f601b5']
+    };
+
+            var chart = new google.charts.Bar(document.getElementById('Instagram1'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+};
+
+    function Instagram2() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.BigramFrequencies.Where(h => h.Platform == "Instagram").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.BigramFrequencies
+                            .Where(p => p.BrandName == brandName && p.Platform == "Instagram") // Filtering by brand name and platform name
+                            .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Bigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#f601b5']
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('Instagram2'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+};
+
+    function Instagram3() {
+    var data = new google.visualization.arrayToDataTable([
+        ['Words', 'Amount'],
+        @foreach(var brand in Model.TrigramFrequencies.Where(h => h.Platform == "Instagram").Select(h => h.BrandName).Distinct())
+        {
+            var brandName = brand;
+            var orderedWords = Model.TrigramFrequencies
+                            .Where(p => p.BrandName == brandName && p.Platform == "Instagram") // Filtering by brand name and platform name
+                            .OrderBy(p => p.Frequency);
+            foreach(var a in orderedWords)
+            {
+                <text>["@a.Trigram", "@a.Frequency"],</text>
+            }
+        }
+    ]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        legend: { position: 'none' },
+        bar: { groupWidth: "80%" },
+        colors: ['#f601b5']
+    };
+
+        var chart = new google.charts.Bar(document.getElementById('Instagram3'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+
+    function drawStuff2() {
+        var data = new google.visualization.arrayToDataTable([
+            ['Hashtags', 'Amount'],
+            @if (ViewBag.Hashtags == 1)
+            {
+                foreach(var brand in Model.Hashtags.Select(h => h.BrandName).Distinct())
+                {
+                    var brandName = Model.Hashtags.FirstOrDefault().BrandName;
+                    var orderedHashtags = Model.Hashtags
+                                   .Where(p => p.BrandName == brandName)
+                                   .OrderBy(p => p.Frequency);
+                    foreach(var a in orderedHashtags)
+                    {
+                        <text>["@a.hashtags", "@a.Frequency"],</text>
+                    }
+                }
+            }
+        ]);
+
+        var options = {
+            width: 1500,
+            height: 700,
+            legend: { position: 'none' },
+            bar: { groupWidth: "80%" },
+            colors: ['#A67B5B']
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div2'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+
+    function NLP_A() {
+        var data = google.visualization.arrayToDataTable([
+            ["Review", "Amount", { role: "style" }],
+            @foreach(var brand in Model.BrandSentiments.Where(h => h.Platform == "Amazon").Select(h => h.BrandName).Distinct())
+            {
+                var positiveAmount = Model.BrandSentiments
+                                         .Where(h => h.Platform == "Amazon" && h.BrandName == brand)
+                                         .Select(h => h.Positive)
+                                         .FirstOrDefault();
+
+                var neutralAmount = Model.BrandSentiments
+                         .Where(h => h.Platform == "Amazon" && h.BrandName == brand)
+                         .Select(h => h.Neutral)
+                         .FirstOrDefault();
+
+                var negativeAmount = Model.BrandSentiments
+                         .Where(h => h.Platform == "Amazon" && h.BrandName == brand)
+                         .Select(h => h.Negative)
+                         .FirstOrDefault();
+
+                <text>["Positive", @positiveAmount, "green"],</text>
+                <text>["Neutral", @neutralAmount, "yellow"],</text>
+                <text>["Negative", @negativeAmount, "red"],</text>
+            }
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            {
+                calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation"
+            },
+            2]);
+
+        var options = {
+            width: 1500,
+            height: 700,
+            bar: { groupWidth: "95%" },
+            legend: { position: "none" },
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("NLP_A"));
+        chart.draw(view, options);
+    };
+
+    function NLP_S() {
+    var data = google.visualization.arrayToDataTable([
+        ["Review", "Amount", { role: "style" }],
+        @foreach(var brand in Model.BrandSentiments.Where(h => h.Platform == "Şikayet Var").Select(h => h.BrandName).Distinct())
+        {
+            var positiveAmount = Model.BrandSentiments
+                                     .Where(h => h.Platform == "Şikayet Var" && h.BrandName == brand)
+                                     .Select(h => h.Positive)
+                                     .FirstOrDefault();
+
+            var neutralAmount = Model.BrandSentiments
+                     .Where(h => h.Platform == "Şikayet Var" && h.BrandName == brand)
+                     .Select(h => h.Neutral)
+                     .FirstOrDefault();
+
+            var negativeAmount = Model.BrandSentiments
+                     .Where(h => h.Platform == "Şikayet Var" && h.BrandName == brand)
+                     .Select(h => h.Negative)
+                     .FirstOrDefault();
+
+            <text>["Positive", @positiveAmount, "green"],</text>
+            <text>["Neutral", @neutralAmount, "yellow"],</text>
+            <text>["Negative", @negativeAmount, "red"],</text>
+        }
+    ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+        {
+            calc: "stringify",
+            sourceColumn: 1,
+            type: "string",
+            role: "annotation"
+        },
+        2]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        bar: { groupWidth: "95%" },
+        legend: { position: "none" },
+    };
+        var chart = new google.visualization.ColumnChart(document.getElementById("NLP_S"));
+    chart.draw(view, options);
+    };
+
+    function NLP_I() {
+    var data = google.visualization.arrayToDataTable([
+        ["Review", "Amount", { role: "style" }],
+        @foreach(var brand in Model.BrandSentiments.Where(h => h.Platform == "Instagram").Select(h => h.BrandName).Distinct())
+        {
+            var positiveAmount = Model.BrandSentiments
+                                        .Where(h => h.Platform == "Instagram" && h.BrandName == brand)
+                                        .Select(h => h.Positive)
+                                        .FirstOrDefault();
+
+            var neutralAmount = Model.BrandSentiments
+                        .Where(h => h.Platform == "Instagram" && h.BrandName == brand)
+                        .Select(h => h.Neutral)
+                        .FirstOrDefault();
+
+            var negativeAmount = Model.BrandSentiments
+                        .Where(h => h.Platform == "Instagram" && h.BrandName == brand)
+                        .Select(h => h.Negative)
+                        .FirstOrDefault();
+
+            <text>["Positive", @positiveAmount, "green"],</text>
+            <text>["Neutral", @neutralAmount, "yellow"],</text>
+            <text>["Negative", @negativeAmount, "red"],</text>
+        }
+    ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+        {
+            calc: "stringify",
+            sourceColumn: 1,
+            type: "string",
+            role: "annotation"
+        },
+        2]);
+
+    var options = {
+        width: 1500,
+        height: 700,
+        bar: { groupWidth: "95%" },
+        legend: { position: "none" },
+    };
+        var chart = new google.visualization.ColumnChart(document.getElementById("NLP_I"));
+    chart.draw(view, options);
+};
+
+    function NLP_T() {
+var data = google.visualization.arrayToDataTable([
+    ["Review", "Amount", { role: "style" }],
+    @foreach(var brand in Model.BrandSentiments.Where(h => h.Platform == "Twitter").Select(h => h.BrandName).Distinct())
+    {
+        var positiveAmount = Model.BrandSentiments
+                                    .Where(h => h.Platform == "Twitter" && h.BrandName == brand)
+                                    .Select(h => h.Positive)
+                                    .FirstOrDefault();
+
+        var neutralAmount = Model.BrandSentiments
+                    .Where(h => h.Platform == "Twitter" && h.BrandName == brand)
+                    .Select(h => h.Neutral)
+                    .FirstOrDefault();
+
+        var negativeAmount = Model.BrandSentiments
+                    .Where(h => h.Platform == "Twitter" && h.BrandName == brand)
+                    .Select(h => h.Negative)
+                    .FirstOrDefault();
+
+        <text>["Positive", @positiveAmount, "green"],</text>
+        <text>["Neutral", @neutralAmount, "yellow"],</text>
+        <text>["Negative", @negativeAmount, "red"],</text>
+    }
+]);
+
+var view = new google.visualization.DataView(data);
+view.setColumns([0, 1,
+    {
+        calc: "stringify",
+        sourceColumn: 1,
+        type: "string",
+        role: "annotation"
+    },
+    2]);
+
+var options = {
+    width: 1500,
+    height: 700,
+    bar: { groupWidth: "95%" },
+    legend: { position: "none" },
+};
+var chart = new google.visualization.ColumnChart(document.getElementById("NLP_T"));
+chart.draw(view, options);
+};
+
+    function drawChartB() {
+        var data = new google.visualization.DataTable();
+        data.addColumn("string", "Topping");
+        data.addColumn("number", "Slices");
+        @if (ViewBag.Amazon == 1)
+        {
+            var brandName = Model.AmazonSingleData.FirstOrDefault()?.Brand_Name;
+            int commentCount = Model.AmazonSingleData.Count(p => p.Brand_Name == brandName);
+            <text>data.addRows([
+            ["Amazon", @commentCount],
+        ]); </text>
+        }
+        @if (ViewBag.Twitter == 1)
+        {
+            var brandName = Model.Twittersingledatas.FirstOrDefault()?.Brand;
+            int commentCount = Model.Twittersingledatas.Count(p => p.Brand == brandName);
+         <text>data.addRows([
+            ["Twitter", @commentCount],
+        ]); </text>
+        }
+        @if (ViewBag.Sikayet == 1)
+        {
+            var brandName = Model.SikayetSingleData.FirstOrDefault()?.Brand;
+            int commentCount = Model.SikayetSingleData.Count(p => p.Brand == brandName);
+            <text>data.addRows([
+            ["Şikayetvar", @commentCount],
+        ]); </text>
+        }
+        @if (ViewBag.Instagram == 1)
+        {
+            var brandName = Model.InstagramSingleData.FirstOrDefault()?.BrandName;
+            int commentCount = Model.InstagramSingleData.Count(p => p.BrandName == brandName);
+            <text>data.addRows([
+            ["Instagram", @commentCount],
+        ]); </text>
+        }
+        var options = {
+            title: "Ratio of Comment numbers between Platforms",
+            titleTextStyle: {
+                fontFamily: "Outfit",
+            },
+            width: 700,
+            height: 600,
+            is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(
+            document.getElementById("pie_chart_div")
+        );
+        chart.draw(data, options);
+    };
+
+
+    //bar plot for each month or year
+    function drawChartC() {
+        var rowData1 = [
+            ["Month", "Amazon.com", "Twitter", "Şikayetvar"],
+            ["2020", 165, 938, 522],
+            ["2021", 135, 1120, 599],
+            ["2022", 157, 1167, 587],
+            ["2023", 139, 1110, 615],
+            ["2024", 136, 691, 629],
+        ];
+        var rowData2 = [
+            ["Month", "Amazon.com", "Twitter", "Şikayetvar"],
+            ["2023/12", 122, 638, 722],
+            ["2024/01", 100, 1120, 899],
+            ["2024/02", 183, 167, 487],
+            ["2024/03", 200, 510, 315],
+            ["2024/04", 123, 491, 829],
+        ];
+
+        var data = [];
+        data[0] = google.visualization.arrayToDataTable(rowData1);
+        data[1] = google.visualization.arrayToDataTable(rowData2);
+
+                  var options = {
+            height: 600,
+            animation: {
+                  startup: true,
+                duration: 800,
+                easing: "out",
+            },
+            vAxis: { minValue: 0, maxValue: 2000 },
+            title: "Monthly Rating Distribution by Websites",
+            vAxis: { title: "Ratings" },
+            hAxis: { title: "Year" },
+            seriesType: "bars",
+            selectionMode: "multiple",
+            tooltip: { trigger: "selection" },
+            aggregationTarget: "category",
+            series: { 5: { type: "line" } },
+        };
+              var current = 0;
+              var chart = new google.visualization.ComboChart(
+                  document.getElementById("chart_div")
+              );
+              var button = document.getElementById("b1");
+              function drawChart() {
+                  button.disabled = true;
+                  google.visualization.events.addListener(chart, "ready", function () {
+                      button.disabled = false;
+                      button.innerText = "Switch to" + (current ? " Year " : " Month ");
+                  });
+                  options["title"] =
+                      (current ? "Monthly " : "Yearly ") +
+                      " Rating Distribution by Websites";
+                  options["hAxis"]["title"] = current ? "Month" : "Year";
+                  chart.draw(data[current], options);
+              }
+              drawChart();
+
+              button.onclick = function () {
+                  current = 1 - current;
+                  drawChart();
+              };
+    };
+
+    function drawChartD() {
+        var data = new google.visualization.DataTable();
+        data.addColumn("string", "Topping");
+        data.addColumn("number", "Slices");
+        data.addRows([
+
+        ]);
+        @if (ViewBag.Amazon==1){
+            foreach(var item in Model.AmazonSingleData.GroupBy(p=>p.Product_Name).Select(p=>p.First()))
+            {
+            <text>
+                data.addRow(["@item.Product_Name", @item.NOReviews]);
+            </text>
+            }
+        }
+
+        var options = {
+            title: "Total Product Comments Rating",
+            titleTextStyle: {
+                fontFamily: "Outfit",
+            },
+            selectionMode: "multiple",
+            tooltip: { trigger: "selection" },
+            aggregationTarget: "category",
+            width: 700,
+            height: 600,
+            pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(
+            document.getElementById("pieHole_chart_div")
+        );
+        chart.draw(data, options);
+    };
+
+    function drawChartE() {
+        var data = google.visualization.arrayToDataTable([
+            ["Country", "Ratings"],
+
+        ]);
+
+        var options = {
+            colorAxis: {
+                minValue: 0,
+                colors: [
+                    "#F7F6BB",
+                    "#f7e166",
+                    "#FCDC2A",
+                    "#85a922",
+                    "#87A922",
+                    "#32a922",
+                    "#114232",
+                ],
+            },
+            datalessRegionColor: "#EAD8C0",
+            enableRegionInteractivity: true,
+            magnifyingGlass: { enable: true, zoomFactor: 7.5 },
+        };
+        var chart = new google.visualization.GeoChart(
+            document.getElementById("regions_div")
+        );
+        chart.draw(data, options);
+    };
+
+
+
+    function drawChartF() {
+        var data = new google.visualization.DataTable();
+        data.addColumn("string", "Product Name");
+        data.addColumn("number", "Price");
+
+        //data.addRow
+        @if (ViewBag.Amazon==1){
+            foreach(var item in Model.AmazonSingleData.GroupBy(p=>p.Product_Name).Select(p=>p.First()))
+            {
+            <text>
+                data.addRow(["@item.Product_Name", {v:@((float)item.Price),f:"@((float)item.Price)"}]);
+            </text>
+            }
+         }
+
+        var table = new google.visualization.Table(
+            document.getElementById("table_div")
+        );
+
+        table.draw(data, {
+            showRowNumber: true,
+            width: "100%",
+            height: "100%",
+            pageSize: 10,
+        });
+    };
+
+</script>
+
+<div class="detail wrapper" data-scroll-container>
+    <div id="hero-3"></div>
+    <div class="home" data-scroll>
+        <div class="searchBar">
+            @using (Html.BeginForm("Detail", "Home", FormMethod.Get, new { id = "searchForm" }))
+            {
+                <input type="text" name="term" placeholder="Search Brand" />
+            }
+        </div>
+        <script>
+    document.getElementById("searchInput").addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("searchForm").submit();
+        }
+    });
+    var message = "@ViewBag.Message";
+    if (message !== "") {
+        alert(message);
+    }
+        </script>
+    </div>
+    <section class="head" data-scroll>
+        <div class="card">
+            <div class="card-content">
+                @if (ViewBag.Amazon == 1)
+                {
+                    <h2 class="brandName">@Model.AmazonSingleData.FirstOrDefault().Brand_Name</h2>
+                }
+                else if (ViewBag.Twitter == 1)
+                {
+                    <h2 class="brandName">@Model.Twittersingledatas.FirstOrDefault().Brand</h2>
+                }
+                else if (ViewBag.Sikayet == 1)
+                {
+                    <h2 class="brandName">@Model.SikayetSingleData.FirstOrDefault().Brand</h2>
+                }
+                else if (ViewBag.Instagram == 1)
+                {
+                    <h2 class="brandName">@Model.InstagramSingleData.FirstOrDefault().BrandName</h2>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="chart not-selectable">
+        <div class="grid-container">
+            @if (ViewBag.Amazon == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <div>
+                        @{
+                            float averagePrice = Model.AmazonSingleData.Average(p => ((float)p.Price));
+
+                            var brandName = Model.AmazonSingleData.FirstOrDefault()?.Brand_Name;
+
+                            int commentCount = Model.AmazonSingleData.Count(p => p.Brand_Name == brandName);
+
+                            // Calculate the average star rating for the specified brand
+                            var averageStarRating = Model.AmazonSingleData.Where(p => p.Brand_Name == brandName).Average(p => p.Star);
+
+                            var averageNoReviewRating = Model.AmazonSingleData.Where(p => p.Brand_Name == brandName).Average(p => p.NOReviews);
+
+                            // Convert the average star rating to an integer if needed
+                            int roundedNoReviewRating = (int)Math.Round(averageNoReviewRating);
+
+                            // Find the lowest-rated product for the specified brand
+                            var lowestRatedProduct = Model.AmazonSingleData
+                                                          .Where(p => p.Brand_Name == brandName)
+                                                          .OrderBy(p => p.Star)
+                                                          .FirstOrDefault();
+
+                            string lowestRatedProductName = lowestRatedProduct != null ? lowestRatedProduct.Product_Name : "N/A";
+                            double lowestRatedProductRating = lowestRatedProduct != null ? lowestRatedProduct.Star : 0.0;
+
+                            // Find the highest-rated product for the specified brand
+                            var highestRatedProduct = Model.AmazonSingleData
+                                                           .Where(p => p.Brand_Name == brandName)
+                                                           .OrderByDescending(p => p.Star)
+                                                           .FirstOrDefault();
+
+                            string highestRatedProductName = highestRatedProduct != null ? highestRatedProduct.Product_Name : "N/A";
+                            double highestRatedProductRating = highestRatedProduct != null ? highestRatedProduct.Star : 0.0;
+
+
+                            // Find the product with the lowest price for the specified brand
+                            var lowestPricedProduct = Model.AmazonSingleData
+                                                           .Where(p => p.Brand_Name == brandName)
+                                                           .OrderBy(p => p.Price) // Assuming 'Price' is the property representing the product price
+                                                           .FirstOrDefault();
+
+                            string lowestPricedProductName = lowestPricedProduct != null ? lowestPricedProduct.Product_Name : "N/A";
+                            double lowestPricedProductPrice = lowestPricedProduct != null ? lowestPricedProduct.Price : 0.0;
+
+                            double averageScore = Model.AmazonSingleData.Average(p => ((double)p.Score));
+
+                            // Find the product with the highest price for the specified brand
+                            var highestPricedProduct = Model.AmazonSingleData
+                                                            .Where(p => p.Brand_Name == brandName)
+                                                            .OrderByDescending(p => p.Price) // Assuming 'Price' is the property representing the product price
+                                                            .FirstOrDefault();
+
+                            string highestPricedProductName = highestPricedProduct != null ? highestPricedProduct.Product_Name : "N/A";
+                            double highestPricedProductPrice = highestPricedProduct != null ? highestPricedProduct.Price : 0.0;
+
+                            // Find the product with the highest number of reviews for the specified brand
+                            var highestReviewProduct = Model.AmazonSingleData
+                                                            .Where(p => p.Brand_Name == brandName)
+                                                            .OrderByDescending(p => p.NOReviews) // Assuming 'NumberOfReviews' is the property representing the number of reviews
+                                                            .FirstOrDefault();
+
+                            string highestReviewProductName = highestReviewProduct != null ? highestReviewProduct.Product_Name : "N/A";
+                            double highestNumberOfReviews = highestReviewProduct != null ? highestReviewProduct.NOReviews : 0;
+
+                            // Find the product with the lowest number of reviews for the specified brand
+                            var lowestReviewProduct = Model.AmazonSingleData
+                                                           .Where(p => p.Brand_Name == brandName)
+                                                           .OrderBy(p => p.NOReviews) // Assuming 'NumberOfReviews' is the property representing the number of reviews
+                                                           .FirstOrDefault();
+
+                            string lowestReviewProductName = lowestReviewProduct != null ? lowestReviewProduct.Product_Name : "N/A";
+                            double lowestNumberOfReviews = lowestReviewProduct != null ? lowestReviewProduct.NOReviews : 0;
+
+                            var catalogNames = Model.AmazonSingleData.Where(p => p.Brand_Name == brandName).Select(p => p.Catalog_Name).Distinct().ToList();
+
+                            // Find the product with the highest score for the specified brand
+                            var highestScoredProduct = Model.AmazonSingleData
+                                                            .Where(p => p.Brand_Name == brandName)
+                                                            .OrderByDescending(p => p.Score) // Assuming 'Score' is the property representing the score
+                                                            .FirstOrDefault();
+
+                            string highestScoredProductName = highestScoredProduct != null ? highestScoredProduct.Product_Name : "N/A";
+                            double highestScore = highestScoredProduct != null ? highestScoredProduct.Score : 0.0;
+                        }
+                        <h2 class="T-header">General Amazon Analysis of @Model.AmazonSingleData.FirstOrDefault().Brand_Name</h2>
+
+                        <h2 class="brandName">Average Price: @((float)averagePrice)</h2>
+
+                        <h2>Average Star Rating: @averageStarRating</h2>
+
+                        <h2>Avarage Number of Reviews: @roundedNoReviewRating</h2>
+
+                        <h2>Avarage Score: @averageScore</h2>
+
+                        <h2>Total Comment Count: @commentCount</h2>
+
+                        <h2>Lowest Rated Product: @lowestRatedProductName</h2>
+
+                        <h2>Rating: @lowestRatedProductRating</h2>
+
+                        <h2>Highest Rated Product: @highestRatedProductName</h2>
+
+                        <h2>Rating: @highestRatedProductRating</h2>
+
+                        <h2>Lowest Priced Product: @lowestPricedProductName</h2>
+
+                        <h2>Price: @lowestPricedProductPrice</h2>
+
+                        <h2>Highest Priced Product: @highestPricedProductName</h2>
+
+                        <h2>Price: @highestPricedProductPrice</h2>
+
+                        <h2>Product with Highest Number of Reviews: @highestReviewProductName</h2>
+
+                        <h2>Number of Reviews: @highestNumberOfReviews</h2>
+
+                        <h2>Product with Lowest Number of Reviews: @lowestReviewProductName</h2>
+
+                        <h2>Number of Reviews: @lowestNumberOfReviews</h2>
+
+                        <h2>Highest Scored Product: @highestScoredProductName</h2>
+
+                        <h2>Score: @highestScore</h2>
+
+                        <h2>PositiveCount: @ViewBag.PositiveCount_A</h2>
+
+                        <h2>NegativeCount: @ViewBag.NegativeCount_A</h2>
+
+                        <h2>NeutralCount: @ViewBag.NeutralCount_A</h2>
+
+                        <h2>Catalog Names for @brandName:</h2>
+                        <ul>
+                            @foreach (var catalogName in catalogNames)
+                            {
+                                <li>@catalogName</li>
+                            }
+                        </ul>
+
+                    </div>
+                </div>
+            }
+            @if (ViewBag.Twitter == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <div>
+                        @{
+                            var brandName = Model.Twittersingledatas.FirstOrDefault()?.Brand;
+
+                            int commentCount = Model.Twittersingledatas.Count(p => p.Brand == brandName);
+
+                            double averageScore = Model.Twittersingledatas.Average(p => ((double)p.Score));
+
+
+                        }
+                        <h2 class="T-header">General Twitter Analysis of @Model.Twittersingledatas.FirstOrDefault().Brand</h2>
+                        <h2>Total Comment Count: @commentCount</h2>
+                        <h2>Post Amount: @((double)averageScore)</h2>
+                        <h2>PositiveCount: @ViewBag.PositiveCount_T</h2>
+                        <h2>NegativeCount: @ViewBag.NegativeCount_T</h2>
+                        <h2>NeutralCount: @ViewBag.NeutralCount_T</h2>
+                    </div>
+                </div>
+            }
+            @if (ViewBag.Sikayet == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <div>
+                        @{
+                            var brandName = Model.SikayetSingleData.FirstOrDefault()?.Brand;
+
+                            int commentCount = Model.SikayetSingleData.Count(p => p.Brand == brandName);
+
+                            double averageScore = Model.SikayetSingleData.Average(p => ((double)p.Score));
+
+
+                        }
+                        <h2 class="T-header">General Şikayetvar Analysis of @Model.SikayetSingleData.FirstOrDefault().Brand</h2>
+                        <h2>Total Comment Count: @commentCount</h2>
+                        <h2>Post Amount: @((double)averageScore)</h2>
+                        <h2>PositiveCount: @ViewBag.PositiveCount_S</h2>
+                        <h2>NegativeCount: @ViewBag.NegativeCount_S</h2>
+                        <h2>NeutralCount: @ViewBag.NeutralCount_S</h2>
+                    </div>
+                </div>
+            }
+            @if (ViewBag.Instagram == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <div>
+                        @{
+                            var brandName = Model.InstagramSingleData.FirstOrDefault()?.BrandName;
+
+                            int commentCount = Model.InstagramSingleData.Count(p => p.BrandName == brandName);
+
+                            double averageScore = Model.InstagramSingleData.Average(p => ((double)p.Score));
+
+                            double averageLike = Model.InstagramSingleData.Average(p => ((double)p.Likes));
+                        }
+                        <h2 class="T-header">General Instagram Analysis of @Model.InstagramSingleData.FirstOrDefault().BrandName</h2>
+                        <h2>Followers @Model.InstagramSingleData.FirstOrDefault().Followers</h2>
+                        <h2>Follows @Model.InstagramSingleData.FirstOrDefault().Follows</h2>
+                        <h2>Avarage Score: @averageLike</h2>
+                        <h2>Total Comment Count: @commentCount</h2>
+                        <h2>Post Amount: @((double)averageScore)</h2>
+                        <h2>PositiveCount: @ViewBag.PositiveCount_I</h2>
+                        <h2>NegativeCount: @ViewBag.NegativeCount_I</h2>
+                        <h2>NeutralCount: @ViewBag.NeutralCount_I</h2>
+                    </div>
+                </div>
+            }
+            <div class="grid-item2 hidden">
+                <div id="pie_chart_div"></div>
+                @if (ViewBag.Amazon == 1)
+                {
+                    <div id="pieHole_chart_div"></div>
+                }
+            </div>
+            <div class="grid-item3 hidden">
+                <div id="chart_div"></div>
+                <button id="b1" class="Button"></button>
+            </div>
+            <div class="grid-item4 hidden">
+                <span>Rating Distribution on World Map</span>
+                <div id="regions_div"></div>
+            </div>
+            @if (ViewBag.Amazon == 1)
+            {
+                <div class="grid-item5 hidden">
+                    <span>TABLE</span>
+                    <div id="table_div"></div>
+                </div>
+            }
+            @if (ViewBag.Sentiment_T == 1)
+            {
+                var brandName = Model.Twittersingledatas.FirstOrDefault().Brand;
+                var platform = "Twitter";
+
+                var imagePath = Model.BrandSentiments
+                                    .Where(bs => bs.BrandName == brandName && bs.Platform == platform)
+                                    .Select(bs => bs.WordCloud)
+                                    .FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    <div class="grid-item3 hidden" style="display:flex;justify-content:space-between;">
+                        <span style="font-size:5rem;text-align:center;font-weight:600">Twitter Word Cloud of @brandName</span>
+                        <img src="~/images/@imagePath" style="max-height:55rem" />
+                    </div>
+                }
+                else
+                {
+                    <div>Image not found for @brandName on platform @platform</div>
+                }
+            }
+            @if (ViewBag.Sentiment_S == 1)
+            {
+                var brandName = Model.SikayetSingleData.FirstOrDefault().Brand;
+                var platform = "Şikayet Var";
+
+                var imagePath = Model.BrandSentiments
+                                    .Where(bs => bs.BrandName == brandName && bs.Platform == platform)
+                                    .Select(bs => bs.WordCloud)
+                                    .FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    <div class="grid-item3 hidden" style="display:flex;justify-content:space-between;">
+                        <span style="font-size:5rem;text-align:center;font-weight:600">Şikayet Var Word Cloud of @brandName</span>
+                        <img src="~/images/@imagePath" style="max-height:55rem" />
+                    </div>
+                }
+                else
+                {
+                    <div>Image not found for @brandName on platform @platform</div>
+                }
+            }
+            @if (ViewBag.Sentiment_A == 1)
+            {
+                var brandName = Model.AmazonSingleData.FirstOrDefault().Brand_Name;
+                var platform = "Amazon";
+
+                var imagePath = Model.BrandSentiments
+                                    .Where(bs => bs.BrandName == brandName && bs.Platform == platform)
+                                    .Select(bs => bs.WordCloud)
+                                    .FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    <div class="grid-item3 hidden" style="display:flex;justify-content:space-between;">
+                        <span style="font-size:5rem;text-align:center;font-weight:600">Amazon Word Cloud of @brandName</span>
+                        <img src="~/images/@imagePath" style="max-height:55rem" />
+                    </div>
+                }
+                else
+                {
+                    <div>Image not found for @brandName on platform @platform</div>
+                }
+            }
+            @if (ViewBag.Sentiment_I == 1)
+            {
+                var brandName = Model.InstagramSingleData.FirstOrDefault().BrandName;
+                var platform = "Instagram";
+
+                var imagePath = Model.BrandSentiments
+                                    .Where(bs => bs.BrandName == brandName && bs.Platform == platform)
+                                    .Select(bs => bs.WordCloud)
+                                    .FirstOrDefault();
+
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    <div class="grid-item3 hidden" style="display:flex;justify-content:space-between;">
+                        <span style="font-size:5rem;text-align:center;font-weight:600">Instagram Word Cloud of @brandName</span>
+                        <img src="~/images/@imagePath" style="max-height:55rem" />
+                    </div>
+                }
+                else
+                {
+                    <div>Image not found for @brandName on platform @platform</div>
+                }
+            }
+            <div class="grid-item3 hidden">
+                @if (ViewBag.Amazon == 1)
+                {
+                    <h2>Amazon NLP Scores of @Model.AmazonSingleData.FirstOrDefault().Brand_Name</h2>
+                    <div id="NLP_A"></div>
+                }
+                @if (ViewBag.Twitter == 1)
+                {
+                    <h2>Twitter NLP Scores of @Model.Twittersingledatas.FirstOrDefault().Brand</h2>
+                    <div id="NLP_T"></div>
+                }
+                @if (ViewBag.Sikayet == 1)
+                {
+                    <h2>Şikayet Var NLP Scores of @Model.SikayetSingleData.FirstOrDefault().Brand</h2>
+                    <div id="NLP_S"></div>
+                }
+                @if (ViewBag.Instagram == 1)
+                {
+                    <h2>Instagram NLP Scores of @Model.InstagramSingleData.FirstOrDefault().BrandName</h2>
+                    <div id="NLP_I"></div>
+                }
+            </div>
+            <!--Amazon Word Frequency-->
+            @if (ViewBag.Uni_A == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Unigram Word Frequency of @Model.UnigramFrequencies.FirstOrDefault().BrandName from Amazon</h2>
+                    <div id="Amazongram1"></div>
+                </div>
+            }
+            @if (ViewBag.Big_A == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Bigram Word Frequency of @Model.BigramFrequencies.FirstOrDefault().BrandName from Amazon</h2>
+                    <div id="Amazongram2"></div>
+                </div>
+            }
+            @if (ViewBag.Tri_A == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Trigram Word Frequency of @Model.TrigramFrequencies.FirstOrDefault().BrandName from Amazon</h2>
+                    <div id="Amazongram3"></div>
+                </div>
+            }
+            <!--Şikayet Var Word Frequency-->
+            @if (ViewBag.Uni_S == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Unigram Word Frequency of @Model.UnigramFrequencies.FirstOrDefault().BrandName from Şikayet Var</h2>
+                    <div id="Sikayetgram1"></div>
+                </div>
+            }
+            @if (ViewBag.Big_S == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Bigram Word Frequency of @Model.BigramFrequencies.FirstOrDefault().BrandName from Şikayet Var</h2>
+                    <div id="Sikayetgram2"></div>
+                </div>
+            }
+            @if (ViewBag.Tri_S == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Trigram Word Frequency of @Model.TrigramFrequencies.FirstOrDefault().BrandName from Şikayet Var</h2>
+                    <div id="Sikayetgram3"></div>
+                </div>
+            }
+            <!--Twitter Word Frequency-->
+            @if (ViewBag.Uni_T == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Unigram Word Frequency of @Model.UnigramFrequencies.FirstOrDefault().BrandName from Twitter</h2>
+                    <div id="Twittergram1"></div>
+                </div>
+            }
+            @if (ViewBag.Big_T == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Bigram Word Frequency of @Model.BigramFrequencies.FirstOrDefault().BrandName from Twitter</h2>
+                    <div id="Twittergram2"></div>
+                </div>
+            }
+            @if (ViewBag.Tri_T == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Trigram Word Frequency of @Model.TrigramFrequencies.FirstOrDefault().BrandName from Twitter</h2>
+                    <div id="Twittergram3"></div>
+                </div>
+            }
+            <!--Instagram Word Frequency-->
+            @if (ViewBag.Uni_I == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Unigram Word Frequency of @Model.UnigramFrequencies.FirstOrDefault().BrandName from Instagram</h2>
+                    <div id="Instagram1"></div>
+                </div>
+            }
+            @if (ViewBag.Big_I == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Bigram Word Frequency of @Model.BigramFrequencies.FirstOrDefault().BrandName from Instagram</h2>
+                    <div id="Instagram2"></div>
+                </div>
+            }
+            @if (ViewBag.Tri_I == 1)
+            {
+                <div class="grid-item3 hidden">
+                    <h2>Trigram Word Frequency of @Model.TrigramFrequencies.FirstOrDefault().BrandName from Instagram</h2>
+                    <div id="Instagram3"></div>
+                </div>
+            }
+            <!--Hashtags-->
+            <div class="grid-item3 hidden">
+                @if (ViewBag.Hashtags == 1)
+                {
+                    <h2>Hashtag Frequency of @Model.Hashtags.FirstOrDefault().BrandName</h2>
+                    <div id="top_x_div2"></div>
+                }
+                @*else if (ViewBag.Twitter == 1)
+                    {
+                        <h2>Hashtag Frequency of @Model.Twittersingledatas.FirstOrDefault().Brand</h2>
+                    }
+                    else if (ViewBag.Sikayet == 1)
+                    {
+                        <h2>Hashtag Frequency of @Model.SikayetSingleData.FirstOrDefault().Brand</h2>
+                    }
+                    else if (ViewBag.Instagram == 1)
+                    {
+                        <h2>Hashtag Frequency of @Model.InstagramSingleData.FirstOrDefault().BrandName</h2>
+                    }*@
+            </div>
+        </div>
+
+
+        <script>
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            });
+            const hiddenElements = document.querySelectorAll(".hidden");
+
+            hiddenElements.forEach((el) => observer.observe(el));
+        </script>
+    </section>
+    <!--container links-->
+    @if (ViewBag.Amazon == 1)
+    {
+        <section data-scroll>
+            <div class="container links">
+                <div class="row flex">
+                    <!--foreach-->
+                    @{
+                        string currentProduct = "";
+                        foreach (var item in Model.AmazonSingleData)
+                        {
+                            if (currentProduct != item.Product_Name)
+                            {
+                                <div class="col-lg-3">
+                                    <a class="li" href="@Url.Action("DetailS", "Home", new { productname = item.Product_Name })">@item.Product_Name</a>
+                                </div>
+                                currentProduct = item.Product_Name;
+                            }
+                        }
+                    }
+
+                </div>
+
+            </div>
+
+        </section>
+
+    }
+
+    <section class="footer" data-scroll>
+        <div class="line"></div>
+        <div class="share">
+            <a href="#" class="fab fa-facebook" id="facebook"></a>
+            <a href="#" class="fab fa-x-twitter" id="twitter"></a>
+            <a href="#" class="fab fa-instagram" id="instagram"></a>
+            <a href="#" class="fab fa-linkedin" id="linkedin"></a>
+            <a href="#" class="fab fa-pinterest" id="pinterest"></a>
+        </div>
+        <div class="credit">
+            Created by <span>Ata Kürklü </span>| All Rights Reserved
+        </div>
+    </section>
+</div>

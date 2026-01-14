@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{631C836F-DFBC-4DBC-B629-2FDC0B87E9FB}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BrandReputationProject</RootNamespace>
+    <AssemblyName>BrandReputationProject</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44303</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405181300311_InitialCreate.cs" />
+    <Compile Include="Migrations\202405181300311_InitialCreate.Designer.cs">
+      <DependentUpon>202405181300311_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\amazonsingledata.cs" />
+    <Compile Include="Models\BigramFrequency.cs" />
+    <Compile Include="Models\BrandSentiments.cs" />
+    <Compile Include="Models\CombinedDataViewModel.cs" />
+    <Compile Include="Models\C__MigrationHistory.cs" />
+    <Compile Include="Models\BrandContext.cs" />
+    <Compile Include="Models\Hashtags.cs" />
+    <Compile Include="Models\instagramdata.cs" />
+    <Compile Include="Models\sikayetsingledata.cs" />
+    <Compile Include="Models\TrigramFrequency.cs" />
+    <Compile Include="Models\twittersingledata.cs" />
+    <Compile Include="Models\UnigramFrequency.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\brands.css" />
+    <Content Include="Content\detail.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="images\Amazon\A4tech.png" />
+    <Content Include="images\Amazon\adidas.png" />
+    <Content Include="images\Amazon\Akel.png" />
+    <Content Include="images\Amazon\Alfais.png" />
+    <Content Include="images\Amazon\Anker.png" />
+    <Content Include="images\Amazon\Apple.png" />
+    <Content Include="images\Amazon\Arzum.png" />
+    <Content Include="images\Amazon\AVESSA.png" />
+    <Content Include="images\Amazon\Baseus.png" />
+    <Content Include="images\Amazon\Bioxcin.png" />
+    <Content Include="images\Amazon\Braun.png" />
+    <Content Include="images\Amazon\Canon.png" />
+    <Content Include="images\Amazon\Casio.png" />
+    <Content Include="images\Amazon\Coco Store’u ziyaret edin.png" />
+    <Content Include="images\Amazon\Colgate.png" />
+    <Content Include="images\Amazon\coverzone.png" />
+    <Content Include="images\Amazon\Crocs.png" />
+    <Content Include="images\Amazon\DIFA Pack.png" />
+    <Content Include="images\Amazon\Electrolux.png" />
+    <Content Include="images\Amazon\EMORES.png" />
+    <Content Include="images\Amazon\eufy security.png" />
+    <Content Include="images\Amazon\eufy.png" />
+    <Content Include="images\Amazon\Everest.png" />
+    <Content Include="images\Amazon\Faber-Castell.png" />
+    <Content Include="images\Amazon\Finish.png" />
+    <Content Include="images\Amazon\Garnier.png" />
+    <Content Include="images\Amazon\GENEL.png" />
+    <Content Include="images\Amazon\Generic.png" />
+    <Content Include="images\Amazon\GGM GİYİM &amp; AKSESUAR.png" />
+    <Content Include="images\Amazon\Gillette.png" />
+    <Content Include="images\Amazon\Hawk Gaming Chair.png" />
+    <Content Include="images\Amazon\HP.png" />
+    <Content Include="images\Amazon\HUAWEI.png" />
+    <Content Include="images\Amazon\Jabra.png" />
+    <Content Include="images\Amazon\JBL.png" />
+    <Content Include="images\Amazon\KabelDirekt.png" />
+    <Content Include="images\Amazon\Karaca.png" />
+    <Content Include="images\Amazon\KIOXIA.png" />
+    <Content Include="images\Amazon\Kütahya Porselen.png" />
+    <Content Include="images\Amazon\Lav.png" />
+    <Content Include="images\Amazon\LAVA.png" />
+    <Content Include="images\Amazon\Lecoo.png" />
+    <Content Include="images\Amazon\Logitech.png" />
+    <Content Include="images\Amazon\L’Oréal Paris.png" />
+    <Content Include="images\Amazon\Makel.png" />
+    <Content Include="images\Amazon\Maped.png" />
+    <Content Include="images\Amazon\Marvis.png" />
+    <Content Include="images\Amazon\Nascita.png" />
+    <Content Include="images\Amazon\Nilson.png" />
+    <Content Include="images\Amazon\NIVEA.png" />
+    <Content Include="images\Amazon\Oral-B.png" />
+    <Content Include="images\Amazon\Osram.png" />
+    <Content Include="images\Amazon\Othello.png" />
+    <Content Include="images\Amazon\Paşabahçe.png" />
+    <Content Include="images\Amazon\PHILIPS.png" />
+    <Content Include="images\Amazon\PUMA.png" />
+    <Content Include="images\Amazon\ROBEVE.png" />
+    <Content Include="images\Amazon\Rotring.png" />
+    <Content Include="images\Amazon\Samsung.png" />
+    <Content Include="images\Amazon\SanDisk.png" />
+    <Content Include="images\Amazon\Scrikss.png" />
+    <Content Include="images\Amazon\Seagate.png" />
+    <Content Include="images\Amazon\Sensodyne.png" />
+    <Content Include="images\Amazon\Signal.png" />
+    <Content Include="images\Amazon\Soundcore.png" />
+    <Content Include="images\Amazon\Staedtler.png" />
+    <Content Include="images\Amazon\Store’u ziyaret edin.png" />
+    <Content Include="images\Amazon\Tapo.png" />
+    <Content Include="images\Amazon\TAÇ.png" />
+    <Content Include="images\Amazon\Tefal.png" />
+    <Content Include="images\Amazon\TOSHIBA.png" />
+    <Content Include="images\Amazon\TTEC.png" />
+    <Content Include="images\Amazon\UGREEN.png" />
+    <Content Include="images\Amazon\Under Armour.png" />
+    <Content Include="images\Amazon\USR.png" />
+    <Content Include="images\Amazon\Viko.png" />
+    <Content Include="images\Amazon\xDrive.png" />
+    <Content Include="images\Amazon\Xiaomi.png" />
+    <Content Include="images\Instagram\Adidas Türkiye.png" />
+    <Content Include="images\Instagram\Akbank.png" />
+    <Content Include="images\Instagram\Alfa Romeo Türkiye.png" />
+    <Content Include="images\Instagram\arçelik.png" />
+    <Content Include="images\Instagram\Aselsan.png" />
+    <Content Include="images\Instagram\Aston Martin Türkiye.png" />
+    <Content Include="images\Instagram\Audi Türkiye.png" />
+    <Content Include="images\Instagram\bekotürkiye.png" />
+    <Content Include="images\Instagram\BMW Türkiye.png" />
+    <Content Include="images\Instagram\Borusan Holding.png" />
+    <Content Include="images\Instagram\Boyner.png" />
+    <Content Include="images\Instagram\Burger King tr.png" />
+    <Content Include="images\Instagram\DenizBank.png" />
+    <Content Include="images\Instagram\Eczacıbaşı Topluluğu.png" />
+    <Content Include="images\Instagram\Enerjisa.png" />
+    <Content Include="images\Instagram\Ford Otosan.png" />
+    <Content Include="images\Instagram\Garanti BBVA.png" />
+    <Content Include="images\Instagram\Hepsiburada.png" />
+    <Content Include="images\Instagram\Hürriyetcomtr.png" />
+    <Content Include="images\Instagram\isbankasi.png" />
+    <Content Include="images\Instagram\Kale Grubu.png" />
+    <Content Include="images\Instagram\Koç Holding.png" />
+    <Content Include="images\Instagram\LC Waikiki.png" />
+    <Content Include="images\Instagram\Maserati Türkiye.png" />
+    <Content Include="images\Instagram\Nestle Türkiye.png" />
+    <Content Include="images\Instagram\Pegasus Hava Yolları.png" />
+    <Content Include="images\Instagram\Petrol Ofisi.png" />
+    <Content Include="images\Instagram\QNB Finansbank.png" />
+    <Content Include="images\Instagram\Sabancı Holding.png" />
+    <Content Include="images\Instagram\Suzuki Türkiye.png" />
+    <Content Include="images\Instagram\Toyota Türkiye.png" />
+    <Content Include="images\Instagram\Trendyol.png" />
+    <Content Include="images\Instagram\Turkcell.png" />
+    <Content Include="images\Instagram\turkishairlines.png" />
+    <Content Include="images\Instagram\Türk Traktör.png" />
+    <Content Include="images\Instagram\Türkiye Halk Bankası.png" />
+    <Content Include="images\Instagram\Türkiye İş Bankası.png" />
+    <Content Include="images\Instagram\Vestel.png" />
+    <Content Include="images\Instagram\Yapı Kredi.png" />
+    <Content Include="images\Instagram\Ziraat Bankası.png" />
+    <Content Include="images\Instagram\Zorlu Holding.png" />
+    <Content Include="images\Instagram\İETT.png" />
+    <Content Include="images\Twitter\Beko.png" />
+    <Content Include="images\Twitter\Boyner.png" />
+    <Content Include="images\Twitter\Erikli.png" />
+    <Content Include="images\Twitter\HalkBank.png" />
+    <Content Include="images\Twitter\Karaca.png" />
+    <Content Include="images\Twitter\Koton.png" />
+    <Content Include="images\Twitter\Lc Waikiki.png" />
+    <Content Include="images\Twitter\Magnum.png" />
+    <Content Include="images\Twitter\Netflix.png" />
+    <Content Include="images\Twitter\Patiswiss.png" />
+    <Content Include="images\Twitter\Samsung.png" />
+    <Content Include="images\Twitter\Torku.png" />
+    <Content Include="images\Twitter\Turkcell.png" />
+    <Content Include="images\Twitter\TurkNet.png" />
+    <Content Include="images\Twitter\TürkTelekom.png" />
+    <Content Include="images\Twitter\Uber.png" />
+    <Content Include="images\Twitter\Unilever.png" />
+    <Content Include="images\Twitter\VakıfBank.png" />
+    <Content Include="images\Twitter\Vodafone.png" />
+    <Content Include="images\Twitter\Ziraat Bankası.png" />
+    <Content Include="images\Şikayet Var\Adidas.png" />
+    <Content Include="images\Şikayet Var\Algida.png" />
+    <Content Include="images\Şikayet Var\Apple.png" />
+    <Content Include="images\Şikayet Var\Ariel.png" />
+    <Content Include="images\Şikayet Var\Arçelik.png" />
+    <Content Include="images\Şikayet Var\Bingo.png" />
+    <Content Include="images\Şikayet Var\Bioderma.png" />
+    <Content Include="images\Şikayet Var\Cappy.png" />
+    <Content Include="images\Şikayet Var\Dell.png" />
+    <Content Include="images\Şikayet Var\Dove.png" />
+    <Content Include="images\Şikayet Var\Doğadan.png" />
+    <Content Include="images\Şikayet Var\Elidor.png" />
+    <Content Include="images\Şikayet Var\English Home.png" />
+    <Content Include="images\Şikayet Var\Eti.png" />
+    <Content Include="images\Şikayet Var\Fakir.png" />
+    <Content Include="images\Şikayet Var\Fila.png" />
+    <Content Include="images\Şikayet Var\Garnier.png" />
+    <Content Include="images\Şikayet Var\Herbalife.png" />
+    <Content Include="images\Şikayet Var\Lenova.png" />
+    <Content Include="images\Şikayet Var\Lipton.png" />
+    <Content Include="images\Şikayet Var\Mavi.png" />
+    <Content Include="images\Şikayet Var\MediaMarkt.png" />
+    <Content Include="images\Şikayet Var\Nike.png" />
+    <Content Include="images\Şikayet Var\Nivea.png" />
+    <Content Include="images\Şikayet Var\Orkid.png" />
+    <Content Include="images\Şikayet Var\Philips.png" />
+    <Content Include="images\Şikayet Var\Rayban.png" />
+    <Content Include="images\Şikayet Var\Rexona.png" />
+    <Content Include="images\Şikayet Var\Samsung.png" />
+    <Content Include="images\Şikayet Var\Sinbo.png" />
+    <Content Include="images\Şikayet Var\Sleepy.png" />
+    <Content Include="images\Şikayet Var\Sütaş.png" />
+    <Content Include="images\Şikayet Var\The Body Shop.png" />
+    <Content Include="images\Şikayet Var\Vestel.png" />
+    <Content Include="images\Şikayet Var\Volkswagen.png" />
+    <Content Include="images\Şikayet Var\Yves Rocher.png" />
+    <Content Include="images\Şikayet Var\Zara.png" />
+    <Content Include="images\Şikayet Var\Ülker.png" />
+    <Content Include="images\Şikayet Var\İkea.png" />
+    <Content Include="locomotive-scroll-master\.gitignore" />
+    <Content Include="locomotive-scroll-master\build\build.js" />
+    <Content Include="locomotive-scroll-master\build\copy.js" />
+    <Content Include="locomotive-scroll-master\build\error.js" />
+    <Content Include="locomotive-scroll-master\build\notify.js" />
+    <Content Include="locomotive-scroll-master\build\scripts.js" />
+    <Content Include="locomotive-scroll-master\build\serve.js" />
+    <Content Include="locomotive-scroll-master\build\styles.js" />
+    <Content Include="locomotive-scroll-master\build\svgs.js" />
+    <Content Include="locomotive-scroll-master\build\watch.js" />
+    <Content Include="locomotive-scroll-master\dist\locomotive-scroll.css" />
+    <Content Include="locomotive-scroll-master\dist\locomotive-scroll.esm.js" />
+    <Content Include="locomotive-scroll-master\dist\locomotive-scroll.js" />
+    <Content Include="locomotive-scroll-master\dist\locomotive-scroll.min.css" />
+    <Content Include="locomotive-scroll-master\dist\locomotive-scroll.min.js" />
+    <Content Include="locomotive-scroll-master\docs\browserconfig.xml" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\favicons\android-chrome-144x144.png" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\favicons\apple-touch-icon.png" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\favicons\favicon-16x16.png" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\favicons\favicon-32x32.png" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\favicons\mstile-150x150.png" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\favicons\safari-pinned-tab.svg" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\locomotive01.jpg" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\locomotive02.jpg" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\locomotive03.jpg" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\locomotive04.jpg" />
+    <Content Include="locomotive-scroll-master\docs\dist\images\sprite.svg" />
+    <Content Include="locomotive-scroll-master\docs\dist\scripts\main.js" />
+    <Content Include="locomotive-scroll-master\docs\dist\styles\main.css" />
+    <Content Include="locomotive-scroll-master\docs\favicon.ico" />
+    <Content Include="locomotive-scroll-master\docs\horizontal.html" />
+    <Content Include="locomotive-scroll-master\docs\index.html" />
+    <Content Include="locomotive-scroll-master\docs\src\images\sprite\github.svg" />
+    <Content Include="locomotive-scroll-master\docs\src\images\sprite\logo.svg" />
+    <Content Include="locomotive-scroll-master\docs\src\scripts\main.js" />
+    <Content Include="locomotive-scroll-master\gulpfile.babel.js" />
+    <Content Include="locomotive-scroll-master\src\locomotive-scroll.js" />
+    <Content Include="locomotive-scroll-master\src\locomotive-scroll.umd.js" />
+    <Content Include="locomotive-scroll-master\src\scripts\Core.js" />
+    <Content Include="locomotive-scroll-master\src\scripts\Main.js" />
+    <Content Include="locomotive-scroll-master\src\scripts\Native.js" />
+    <Content Include="locomotive-scroll-master\src\scripts\NativeMain.js" />
+    <Content Include="locomotive-scroll-master\src\scripts\options.js" />
+    <Content Include="locomotive-scroll-master\src\scripts\Smooth.js" />
+    <Content Include="locomotive-scroll-master\src\scripts\utils\html.js" />
+    <Content Include="locomotive-scroll-master\src\scripts\utils\maths.js" />
+    <Content Include="locomotive-scroll-master\src\scripts\utils\transform.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.esm.js" />
+    <Content Include="Scripts\bootstrap.esm.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="locomotive-scroll-master\.babelrc" />
+    <Content Include="locomotive-scroll-master\.browserslistrc" />
+    <Content Include="locomotive-scroll-master\.editorconfig" />
+    <Content Include="locomotive-scroll-master\.github\ISSUE_TEMPLATE\bug_report.md" />
+    <Content Include="locomotive-scroll-master\.github\ISSUE_TEMPLATE\feature_request.md" />
+    <Content Include="locomotive-scroll-master\.npmignore" />
+    <Content Include="locomotive-scroll-master\.prettierrc" />
+    <Content Include="locomotive-scroll-master\docs\dist\fonts\NeueMontreal-Medium.woff" />
+    <Content Include="locomotive-scroll-master\docs\dist\fonts\NeueMontreal-Medium.woff2" />
+    <Content Include="locomotive-scroll-master\docs\dist\fonts\Personal-license-agreement" />
+    <Content Include="locomotive-scroll-master\docs\site.webmanifest" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_choochoo.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_cta.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_damn.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_direction-block.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_features.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_fixed.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_header.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_helicopter.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_intro.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_lerp-block.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_section.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_speed-block.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\components\_summary.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\elements\_fonts.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\elements\_headings.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\elements\_page.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\generic\_button.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\generic\_form.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\generic\_generic.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\generic\_media.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\main.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_button.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_container.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_crop.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_form.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_image.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_layout.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_ratio.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_scroll.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_table.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\objects\_title.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\settings\_config.colors.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\settings\_config.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\templates\.gitkeep" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\tools\_family.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\tools\_fonts.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\tools\_functions.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\tools\_layout.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\tools\_mixins.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\tools\_widths.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\utilities\_align.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\utilities\_headings.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\utilities\_helpers.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\utilities\_print.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\utilities\_ratio.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\utilities\_spacing.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\utilities\_states.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\utilities\_widths.scss" />
+    <Content Include="locomotive-scroll-master\docs\src\styles\vendors\.gitkeep" />
+    <Content Include="locomotive-scroll-master\LICENSE" />
+    <Content Include="locomotive-scroll-master\mconfig.json" />
+    <Content Include="locomotive-scroll-master\package-lock.json" />
+    <Content Include="locomotive-scroll-master\package.json" />
+    <Content Include="locomotive-scroll-master\README.md" />
+    <Content Include="locomotive-scroll-master\src\locomotive-scroll.scss" />
+    <Content Include="locomotive-scroll-master\src\styles\_base.scss" />
+    <Content Include="locomotive-scroll-master\src\styles\_scrollbar.scss" />
+    <Content Include="locomotive-scroll-master\www" />
+    <None Include="Scripts\jquery-3.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.1.js" />
+    <Content Include="Scripts\jquery-3.7.1.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.7.1.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Brand.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Home\DetailS.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\bootstrap.esm.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202405181300311_InitialCreate.resx">
+      <DependentUpon>202405181300311_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>51838</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44303/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Bu proje bu bilgisayarda olmayan NuGet paketlerine başvuru yapıyor. Bunları indirmek için NuGet Paket Geri Yükleme'yi kullanın. Daha fazla bilgi için, bkz. http://go.microsoft.com/fwlink/?LinkID=322105. Eksik dosya: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
